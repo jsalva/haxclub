@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Physical{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="{% static 'css/normalize.css' %}" rel="stylesheet">
+    <!-- This file store project specific CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- Use this to quickly test CSS changes in a template,
+        then move to client_portal.css -->
+    {% block extra_css %}{% endblock extra_css %}
+  </head>
+
+  <body>
+      {% block content %}
+        <p>Use this document as a way to quick start any new project.</p>
+      {% endblock content %}
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/libs/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'js/libs/handlebars-1.1.2.js' %}"></script>
+    <script src="{% static 'js/libs/ember-1.5.0.js' %}"></script>
+    <script src="{% static 'js/libs/ember-data.js' %}"></script>
+    <script src="{% static 'js/libs/ember-data-django-rest-adapter.prod.js' %}"></script>
+
+    <!-- CSRF Support -->
+    <script type="text/javascript">
+      jQuery(document).ajaxSend(function(event, xhr, settings) {
+        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+          xhr.setRequestHeader("X-CSRFToken", "{{csrf_token}}");
+        }
+      });
+
+    </script>
+    <!-- end CSRF Support -->
+
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="{% static 'tests/runner.js' %}"></script>
+
+    {% block extra_js %}{% endblock extra_js %}
+  </body>
+</html>

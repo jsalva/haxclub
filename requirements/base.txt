@@ -1,0 +1,15 @@
+Django==1.6.3
+South==0.8.4
+dj-database-url==0.3.0
+dj-static==0.0.5
+django-grappelli==2.5.3
+django-jsonfield==0.9.12
+django-toolbelt==0.0.1
+djangorestframework==2.3.13
+gnureadline==6.3.3
+gunicorn==18.0
+ipython==2.0.0
+psycopg2==2.5.2
+pystache==0.5.3
+static==1.0.2
+wsgiref==0.1.2

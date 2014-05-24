@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block title %}Physical Exam{% endblock title %}
+
+{% block content %}
+
+{% verbatim %}
+
+<script type="text/x-handlebars" data-template-name="application">
+    {{outlet 'content'}}
+</script>
+
+{% endverbatim %}
+{% endblock content %}
+
