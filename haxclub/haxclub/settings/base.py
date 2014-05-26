@@ -64,7 +64,7 @@ MANAGERS = ADMINS
 CACHE_LOCATION = get_env_variable('CACHE_LOCATION')
 CACHES = {
     'default': {
-        'BACKEND': 'memcached.MemcachedCache',
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': CACHE_LOCATION,
 		}
 	}
@@ -193,7 +193,6 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'auth',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
