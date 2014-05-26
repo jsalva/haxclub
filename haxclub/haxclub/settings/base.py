@@ -49,7 +49,7 @@ CELERYBEAT_SCHEDULE = {}
 
 # get absolute path of current directory (useful for making project path more independent in development)
 
-DEBUG = False
+DEBUG = True
 MAINTENANCE = get_boolean_env_variable('MAINTENANCE',False)
 
 TEMPLATE_DEBUG = DEBUG
@@ -141,6 +141,7 @@ STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 STATICFILES_DIRS = (
+    'haxclub/static/',
     # for use with any static directories other than '<appname>/static'
 )
 
@@ -189,6 +190,7 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 TEMPLATE_DIRS = (
+    'haxclub/templates/'
     # for user with any path other than '<appname>/templates'
 )
 
@@ -207,6 +209,7 @@ INSTALLED_APPS = (
     'south',
     'djsupervisor',
     'rest_framework',
+    'flatui',
 )
 
 # This must be first. Do not move this.

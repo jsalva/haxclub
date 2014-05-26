@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('hax.views',
+urlpatterns = patterns('haxclub.views',
     url(r'^$', 'index' ,name='hax-index'),
+	url(r'^flatui/', include('flatui.urls',namespace='flatui')),
 )

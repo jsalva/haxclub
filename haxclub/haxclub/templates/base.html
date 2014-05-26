@@ -1,25 +1,35 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}Physical{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>HaxClub - {% block title %}{% endblock title %}</title>
+    <meta name="description" content="A club for hackers">
+    <meta name="author" content="John Salvatore">
 
-    <!-- Le styles -->
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="{% static 'css/flat-ui.css' %}" rel="stylesheet">
+    <link href="{% static 'css/demo.css' %}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
     <![endif]-->
 
+    <!-- get rid of these -->
     <link href="{% static 'css/normalize.css' %}" rel="stylesheet">
-    <!-- This file store project specific CSS -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-    <!-- Use this to quickly test CSS changes in a template,
-        then move to client_portal.css -->
+    <!-- Use this to quickly test CSS changes in a template -->
     {% block extra_css %}{% endblock extra_css %}
   </head>
 
@@ -36,6 +46,20 @@
     <script src="{% static 'js/libs/ember-1.5.0.js' %}"></script>
     <script src="{% static 'js/libs/ember-data.js' %}"></script>
     <script src="{% static 'js/libs/ember-data-django-rest-adapter.prod.js' %}"></script>
+
+    
+    <script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+    <script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'js/bootstrap-switch.js' %}"></script>
+    <script src="{% static 'js/flatui-checkbox.js' %}"></script>
+    <script src="{% static 'js/flatui-radio.js' %}"></script>
+    <script src="{% static 'js/jquery.tagsinput.js' %}"></script>
+    <script src="{% static 'js/jquery.placeholder.js' %}"></script>
+    <script src="{% static 'js/jquery.stacktable.js' %}"></script>
+    <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+    <script src="{% static 'js/application.js' %}"></script>
 
     <!-- CSRF Support -->
     <script type="text/javascript">
