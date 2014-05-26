@@ -49,16 +49,16 @@
         <h1 class='hax-logo'>
             <div class='grid'>
                 <div class='item'></div>
-                <div class='item'></div>
-                <div class='item'></div>
-
-                <div class='item'></div>
-                <div class='item'></div>
+                <div class='item hax-active'></div>
                 <div class='item'></div>
 
                 <div class='item'></div>
                 <div class='item'></div>
-                <div class='item'></div>
+                <div class='item hax-active'></div>
+
+                <div class='item hax-active'></div>
+                <div class='item hax-active'></div>
+                <div class='item hax-active'></div>
             </div>
 
             <div class='group'>
@@ -86,7 +86,7 @@ $(document).ready(function(){
 
     var sequence = [[1,5,6,7,8],[0,2,4,5,7],[2,3,5,7,8],[0,4,5,6,7]],
         grid_items = $('.hax-logo .grid .item'),
-        current_idx = 0;
+        current_idx = 1;
 
     function clear_grid(){
         grid_items.removeClass('hax-active');
