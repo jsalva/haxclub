@@ -2,11 +2,73 @@
 {% load staticfiles %}
 
 {% block extra_css %}
+<style>
+    .hax-logo {
+        font: 900 90px/100px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        letter-spacing: -2px;
+        margin: 10px 0;
+    }
+    .hax-logo small{
+        color: rgba(52, 73, 94, 0.30000000000000004);
+        display: block;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0;
+        padding-top: 5px;
+
+    }
+
+    .hax-logo .grid{
+        height: 300px;
+        margin: 0 auto 26px;
+        width: 300px;
+    }
+
+    .hax-logo .grid .item{
+        background-color:#7ACBFF;
+        width:100px;
+        height:100px;
+        float:left;
+        border-radius: 100px;
+    }
+
+    .hax-logo .grid .item.hax-active{
+        background-color: #2D91D1;
+    }
+
+</style>
+
 {% endblock %}
 
 {% block title %}Home{% endblock title %}
 
 {% block content %}
+
+<div class='container'>
+    <div class='demo-headline'>
+        <h1 class='hax-logo'>
+            <div class='grid'>
+                <div class='item'></div>
+                <div class='item'></div>
+                <div class='item'></div>
+
+                <div class='item'></div>
+                <div class='item'></div>
+                <div class='item'></div>
+
+                <div class='item'></div>
+                <div class='item'></div>
+                <div class='item'></div>
+            </div>
+
+            <div class='group'>
+            HaxClub
+            <small>Let's get hacking</small>
+            </div>
+        </h1>
+    </div>
+
+</div>
 
 {% verbatim %}
 
@@ -18,4 +80,45 @@
 {% endblock content %}
 
 {% block extra_js %}
+<script>
+
+$(document).ready(function(){
+
+    var sequence = [[1,5,6,7,8],[0,2,4,5,7],[2,3,5,7,8],[0,4,5,6,7]],
+        grid_items = $('.hax-logo .grid .item'),
+        current_idx = 0;
+
+    function clear_grid(){
+        grid_items.removeClass('hax-active');
+    };
+
+    function step(){
+        console.log('stepping')
+        if (current_idx >= sequence.length){
+            current_idx = 0;
+        }
+
+        console.log(current_idx)
+        console.log(sequence[current_idx])
+        sequence[current_idx].forEach(function(value){
+            $(grid_items[value]).addClass('hax-active');
+        });
+
+        current_idx += 1;
+        setTimeout(function(){
+            clear_grid();
+            step();
+        }, 1000);
+    };
+
+    //init
+    console.log('started')
+    setTimeout(function(){
+        clear_grid();
+        step();
+    },1000)
+
+
+});
+</script>
 {% endblock extra_js %}
