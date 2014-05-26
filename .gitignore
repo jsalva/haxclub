@@ -14,5 +14,4 @@ celerybeat-schedule
 out
 .idea/
 media/
-static/
 haxclub.conf
