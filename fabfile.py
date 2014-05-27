@@ -61,7 +61,7 @@ def remote_setup():
     sudo('yum update -y')
 
     # build tools
-    sudo('yum install make automake gcc gcc-c++ kernel-devel git-core mysql mysql-server mysql-devel postgresql-devel patch ncurses ncurses-devel -y')
+    sudo('yum install make automake gcc gcc-c++ kernel-devel git-core mysql mysql-server mysql-devel postgresql-devel patch ncurses ncurses-devel nginx -y')
 
     # rabbitmq
     sudo('yum install rabbitmq-server --enablerepo=epel -y')
@@ -97,7 +97,8 @@ def deploy():
             with cd('~/'):
                 run('git clone https://github.com/jsalva/haxclub')
         with cd('~/haxclub/haxclub'):
-            run('mkdir logs')
+            if not exists('logs'):
+                run('mkdir logs')
             run('git pull origin master')
             with shell_env(**env_vars):
                 prompts = []
@@ -110,6 +111,16 @@ def deploy():
                         erun('python manage.py supervisor reload %s' % settings_file)
                     else:
                         erun('python manage.py supervisor --daemonize %s' % settings_file)
+
+    if not exists('/tmp/nginx'):
+        run('mkdir /tmp/nginx')
+
+    put('nginx.conf','/etc/nginx/nginx.conf',use_sudo=True)
+    put('nginx_haxclub.conf','/etc/nginx/conf.d/nginx_haxclub.conf',use_sudo=True)
+    put('ssl/haxclub.key.nopass','/etc/ssl/certs/haxclub.key.nopass',use_sudo=True)
+    put('ssl/haxclub.crt','/etc/ssl/certs/haxclub.crt',use_sudo=True)
+    put('nginx_haxclub.conf','/etc/nginx/conf.d/nginx_haxclub.conf',use_sudo=True)
+    sudo('service nginx stop; service nginx start;')
 
 @task
 def aws():
