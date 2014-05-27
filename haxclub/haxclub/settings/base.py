@@ -210,10 +210,9 @@ INSTALLED_APPS = (
     'djsupervisor',
     'rest_framework',
     'flatui',
+    'djcelery',
 )
 
-# This must be first. Do not move this.
-INSTALLED_APPS = ('longerusername',) + INSTALLED_APPS
 
 # django social-registration values
 AUTHENTICATION_BACKENDS = (
