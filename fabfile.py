@@ -61,7 +61,10 @@ def remote_setup():
     sudo('yum update -y')
 
     # build tools
-    sudo('yum install make automake gcc gcc-c++ kernel-devel git-core mysql-devel postgresql-devel patch ncurses ncurses-devel -y')
+    sudo('yum install make automake gcc gcc-c++ kernel-devel git-core mysql mysql-server mysql-devel postgresql-devel patch ncurses ncurses-devel -y')
+
+    # rabbitmq
+    sudo('yum install rabbitmq-server --enablerepo=epel -y')
 
     # make sure python 2.7 is installed
     sudo('yum install python27-devel -y')
@@ -77,11 +80,13 @@ def remote_setup():
     sudo('pip install virtualenvwrapper')
 
     # install pip remote requirements (obtained from requirements/remote.txt)
-    cmd ='source $(which virtualenvwrapper.sh) && mkvirtualenv remote -p /usr/bin/python2.7 && workon remote;'
     with cd('/tmp'):
-        put(remote_requirements,'requirements.txt')
-        cmd += 'pip install -r requirements.txt;'
-        run(cmd)
+        with prefix('source $(which virtualenvwrapper.sh) && workon remote'):
+            put(remote_requirements,'requirements.txt')
+            run('pip install -r requirements.txt')
+
+    sudo('/etc/init.d/mysqld stop; /etc/init.d/mysqld start')
+    sudo('rabbitmqctl stop; rabbitmq-server -detached',user='rabbitmq')
 
 @task
 def deploy():
@@ -92,6 +97,7 @@ def deploy():
             with cd('~/'):
                 run('git clone https://github.com/jsalva/haxclub')
         with cd('~/haxclub/haxclub'):
+            run('mkdir logs')
             run('git pull origin master')
             with shell_env(**env_vars):
                 prompts = []
@@ -104,9 +110,6 @@ def deploy():
                         erun('python manage.py supervisor reload %s' % settings_file)
                     else:
                         erun('python manage.py supervisor --daemonize %s' % settings_file)
-
-
-
 
 @task
 def aws():
