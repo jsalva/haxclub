@@ -1,5 +1,6 @@
 haxclub
 =======
 
-club for hackers
-live site: [`https://www.hax.club`](https://www.hax.club)
+#A Club for Hackers
+
+[`https://www.hax.club`](https://www.hax.club)
